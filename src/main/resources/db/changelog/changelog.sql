@@ -41,3 +41,13 @@ ALTER TABLE "user"
 ALTER TABLE voucher
     ADD COLUMN createby varchar(40),
     ADD COLUMN updateby varchar(40);
+
+ALTER TABLE roles_permission
+    DROP CONSTRAINT roles_permission_pkey;
+
+ALTER TABLE roles_permission
+    ADD COLUMN id BIGSERIAL PRIMARY KEY;
+
+ALTER TABLE roles_permission
+    ADD CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id),
+    ADD CONSTRAINT fk_permission FOREIGN KEY (permission_id) REFERENCES permission(id);
